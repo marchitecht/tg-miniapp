@@ -5,3 +5,8 @@ export interface DayInfo {
   isToday: boolean;
   isActualWeek: boolean;
 }
+export interface TimeSlot {
+  date: string;
+  time: string;
+  isToday: boolean;
+}

@@ -7,9 +7,13 @@ import {
   startOfWeek,
   endOfWeek,
   isWithinInterval,
+  startOfDay,
+  isBefore,
+  endOfDay,
+  addHours,
 } from "date-fns";
 import { ru } from "date-fns/locale";
-import { DayInfo } from "./types";
+import { DayInfo, TimeSlot } from "./types";
 
 export const getWeekDaysWithDates = (year: number): DayInfo[] => {
   const yearStart = startOfYear(new Date(year, 0, 1));
@@ -44,11 +48,31 @@ export const generateTimeSlots = () => {
     const time = hour < 10 ? `0${hour}:00` : `${hour}:00`;
     slots.push(time);
   }
+  console.log(slots);
+
   return slots;
 };
 
 export const getCurrentTimeSlot = () => {
   const currentHour = new Date().getHours();
-
   return currentHour < 10 ? `0${currentHour}:00` : `${currentHour}:00`;
+};
+
+export const createTimeSlots = (days: DayInfo[]): TimeSlot[] => {
+  const slots: TimeSlot[] = [];
+
+  days.forEach((day) => {
+    const formattedDate = format(day.init, "yyyy-MM-dd");
+    let currentHour = addHours(startOfDay(day.init), 10); // Start from 10 AM
+
+    while (isBefore(currentHour, addHours(startOfDay(day.init), 22))) {
+      // End before 10 PM
+      const time = format(currentHour, "HH:00");
+      slots.push({ date: formattedDate, time, isToday: day.isToday });
+      currentHour = addHours(currentHour, 1);
+    }
+  });
+  console.log(slots);
+
+  return slots;
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { DayInfo } from "../types";
 import { getWeekDaysWithDates } from "../utils";
 import { Carousel } from "./Carousel";
@@ -12,9 +12,9 @@ export const CalendarView = () => {
   const [selectedDay, setSelectedDay] = useState<DayInfo>(
     currentWeekDays[todayIndex]
   );
-  const handleDayClick = (day: DayInfo) => {
+  const handleDayClick = useCallback((day: DayInfo) => {
     setSelectedDay(day);
-  };
+  }, []);
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>

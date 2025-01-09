@@ -1,36 +1,13 @@
 import { useState } from "react";
-import { getCurrentTimeSlot } from "../utils";
+import { createTimeSlots, getCurrentTimeSlot } from "../utils";
 import styles from "./TimeSlots.module.scss";
-import { DayInfo } from "../types";
-import { format, addHours, startOfDay, isBefore, endOfDay } from "date-fns";
+import { DayInfo, TimeSlot } from "../types";
+import { format } from "date-fns";
 
 interface TimeSlotsProps {
   days: DayInfo[];
   switchDay: DayInfo | undefined;
 }
-
-interface TimeSlot {
-  date: string;
-  time: string;
-  isToday: boolean;
-}
-
-export const createTimeSlots = (days: DayInfo[]): TimeSlot[] => {
-  const slots: TimeSlot[] = [];
-
-  days.forEach((day) => {
-    const formattedDate = format(day.init, "yyyy-MM-dd");
-    let currentHour = startOfDay(day.init);
-
-    while (isBefore(currentHour, endOfDay(day.init))) {
-      const time = format(currentHour, "HH:00");
-      slots.push({ date: formattedDate, time, isToday: day.isToday });
-      currentHour = addHours(currentHour, 1);
-    }
-  });
-
-  return slots;
-};
 
 export const TimeSlots: React.FC<TimeSlotsProps> = ({ days, switchDay }) => {
   const timeSlots: TimeSlot[] = createTimeSlots(days);
@@ -55,11 +32,10 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({ days, switchDay }) => {
 
   return (
     <div>
+      <span>Выберите подходящее время</span>
       <div className={styles.slotContainer}>
         <div className={styles.wrapper}>
           {selectedDaySlots.map((slot) => {
-            console.log(slot, "SLOT");
-
             return (
               <div
                 className={`${styles.slot}

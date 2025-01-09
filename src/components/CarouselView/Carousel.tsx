@@ -44,6 +44,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   }, []);
   return (
     <div className={styles.carouselContainer}>
+      <span>Выберите день</span>
       <div className={styles.wrapper}>
         {currentWeekDays.map((dayInfo, index) => {
           const dayRef = dayInfo.isToday
