@@ -9,7 +9,6 @@ import {
   isWithinInterval,
   startOfDay,
   isBefore,
-  endOfDay,
   addHours,
 } from "date-fns";
 import { ru } from "date-fns/locale";
