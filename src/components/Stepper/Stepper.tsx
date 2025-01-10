@@ -34,15 +34,15 @@ const views = [
 export const Stepper = () => {
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
 
-  const handleNext = () => {
-    setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
-  };
+  //   const handleNext = () => {
+  //     setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
+  //   };
 
-  const handlePrevious = () => {
-    setCurrentViewIndex(
-      (prevIndex) => (prevIndex - 1 + views.length) % views.length
-    );
-  };
+  //   const handlePrevious = () => {
+  //     setCurrentViewIndex(
+  //       (prevIndex) => (prevIndex - 1 + views.length) % views.length
+  //     );
+  //   };
   const handleSelectService = () => {
     setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
   };

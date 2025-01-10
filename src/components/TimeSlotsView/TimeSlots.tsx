@@ -21,11 +21,11 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
   const selectedDaySlots = timeSlots.filter(
     (slot) => slot.date === format(selectedDay.init, "yyyy-MM-dd")
   );
-  const currentTimeSlot = selectedDaySlots.find(
-    (slot) =>
-      slot.time === getCurrentTimeSlot() &&
-      slot.date === format(new Date(), "yyyy-MM-dd")
-  );
+  // const currentTimeSlot = selectedDaySlots.find(
+  //   (slot) =>
+  //     slot.time === getCurrentTimeSlot() &&
+  //     slot.date === format(new Date(), "yyyy-MM-dd")
+  // );
   const switchedDay = format(switchDay?.init ?? new Date(), "yyyy-MM-dd");
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>();
   // currentTimeSlot.time
