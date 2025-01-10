@@ -5,7 +5,7 @@ import { Carousel } from "./Carousel";
 import { TimeSlots } from "../TimeSlotsView/TimeSlots";
 
 interface CalendarViewProps {
-  onSelectDateTime: () => void;
+  onSelectDateTime: (dateTime: string) => void;
 }
 export const CalendarView: React.FC<CalendarViewProps> = ({
   onSelectDateTime,
@@ -29,7 +29,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
         <TimeSlots
           days={days}
           switchDay={selectedDay}
-          onSelectDateTime={onSelectDateTime}
+          onSelectDateTime={() => onSelectDateTime(selectedDay.day)}
         />
       </div>
     </>

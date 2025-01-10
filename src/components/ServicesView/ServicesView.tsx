@@ -17,7 +17,7 @@ const services = [
   },
 ];
 interface ServicesViewProps {
-  onSelectService: () => void;
+  onSelectService: (service: string) => void;
 }
 export const ServicesView: React.FC<ServicesViewProps> = ({
   onSelectService,
@@ -28,7 +28,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
         <div
           className={`${styles.service} `} // Apply glow effect to selected day
           key={service.id}
-          onClick={onSelectService}>
+          onClick={() => onSelectService(service.label)}>
           {service.label}: {service.price}
         </div>
       ))}

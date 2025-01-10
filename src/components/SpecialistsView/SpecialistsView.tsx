@@ -20,7 +20,7 @@ const specialists = [
   },
 ];
 interface SpecialistsViewProps {
-  onSelectSpecialist: () => void;
+  onSelectSpecialist: (service: string) => void;
 }
 export const SpecialistView: React.FC<SpecialistsViewProps> = ({
   onSelectSpecialist,
@@ -31,7 +31,7 @@ export const SpecialistView: React.FC<SpecialistsViewProps> = ({
         <div
           className={`${styles.specialist} `} // Apply glow effect to selected day
           key={specialist.id}
-          onClick={onSelectSpecialist}>
+          onClick={() => onSelectSpecialist(specialist.name)}>
           {specialist.name}
         </div>
       ))}{" "}
