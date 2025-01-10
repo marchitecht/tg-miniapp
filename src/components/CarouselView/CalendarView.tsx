@@ -4,7 +4,12 @@ import { getWeekDaysWithDates } from "../utils";
 import { Carousel } from "./Carousel";
 import { TimeSlots } from "../TimeSlotsView/TimeSlots";
 
-export const CalendarView = () => {
+interface CalendarViewProps {
+  onSelectDateTime: () => void;
+}
+export const CalendarView: React.FC<CalendarViewProps> = ({
+  onSelectDateTime,
+}) => {
   const currentYear = new Date().getFullYear();
   const days = getWeekDaysWithDates(currentYear);
   const currentWeekDays = days.filter((dayInfo) => dayInfo.isActualWeek);
@@ -21,7 +26,11 @@ export const CalendarView = () => {
         <Carousel days={days} handleDayClickForTimeSlot={handleDayClick} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <TimeSlots days={days} switchDay={selectedDay} />
+        <TimeSlots
+          days={days}
+          switchDay={selectedDay}
+          onSelectDateTime={onSelectDateTime}
+        />
       </div>
     </>
   );

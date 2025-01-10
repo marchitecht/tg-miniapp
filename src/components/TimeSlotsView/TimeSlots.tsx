@@ -7,27 +7,31 @@ import { format } from "date-fns";
 interface TimeSlotsProps {
   days: DayInfo[];
   switchDay: DayInfo | undefined;
+  onSelectDateTime: () => void;
 }
 
-export const TimeSlots: React.FC<TimeSlotsProps> = ({ days, switchDay }) => {
+export const TimeSlots: React.FC<TimeSlotsProps> = ({
+  days,
+  switchDay,
+  onSelectDateTime,
+}) => {
   const timeSlots: TimeSlot[] = createTimeSlots(days);
   const selectedDay = days[days.findIndex((day) => day.isToday)];
 
   const selectedDaySlots = timeSlots.filter(
     (slot) => slot.date === format(selectedDay.init, "yyyy-MM-dd")
   );
-  const currentTimeSlot =
-    selectedDaySlots.find(
-      (slot) =>
-        slot.time === getCurrentTimeSlot() &&
-        slot.date === format(new Date(), "yyyy-MM-dd")
-    ) || selectedDaySlots[0];
-  const switchedDay = format(switchDay?.init ?? new Date(), "yyyy-MM-dd");
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>(
-    currentTimeSlot.time
+  const currentTimeSlot = selectedDaySlots.find(
+    (slot) =>
+      slot.time === getCurrentTimeSlot() &&
+      slot.date === format(new Date(), "yyyy-MM-dd")
   );
+  const switchedDay = format(switchDay?.init ?? new Date(), "yyyy-MM-dd");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>();
+  // currentTimeSlot.time
   const handleDayClick = (timeSlot: TimeSlot) => {
     setSelectedTimeSlot(timeSlot.time);
+    onSelectDateTime();
   };
 
   return (

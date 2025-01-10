@@ -47,8 +47,6 @@ export const generateTimeSlots = () => {
     const time = hour < 10 ? `0${hour}:00` : `${hour}:00`;
     slots.push(time);
   }
-  console.log(slots);
-
   return slots;
 };
 
@@ -71,7 +69,5 @@ export const createTimeSlots = (days: DayInfo[]): TimeSlot[] => {
       currentHour = addHours(currentHour, 1);
     }
   });
-  console.log(slots);
-
   return slots;
 };

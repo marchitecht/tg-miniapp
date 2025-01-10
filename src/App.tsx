@@ -1,10 +1,10 @@
 import "./App.css";
-import { CalendarView } from "./components/CarouselView/CalendarView";
+import { Stepper } from "./components/Stepper/Stepper";
 
 function App() {
   return (
     <>
-      <CalendarView />
+      <Stepper />
     </>
   );
 }
