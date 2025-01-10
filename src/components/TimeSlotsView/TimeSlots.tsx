@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createTimeSlots, getCurrentTimeSlot } from "../utils";
+import { createTimeSlots } from "../utils";
 import styles from "./TimeSlots.module.scss";
 import { DayInfo, TimeSlot } from "../types";
 import { format } from "date-fns";
