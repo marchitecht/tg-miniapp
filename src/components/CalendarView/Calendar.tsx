@@ -1,5 +1,4 @@
 import { useCalendar } from './useCalendar';
-import { getMonthNames } from './utils/getMonthNames';
 import styles from './Calendar.module.scss';
 import { ArrowLeft } from './ArrowLeft';
 import { ArrowRight } from './ArrowRight';

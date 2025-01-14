@@ -2,9 +2,6 @@ import { useReducer, useState } from 'react';
 import { CalendarView } from '../CarouselView/CalendarView';
 import { ServicesView } from '../ServicesView/ServicesView';
 import { SpecialistView } from '../SpecialistsView/SpecialistsView';
-import { createDate } from '../CalendarView/utils/createDate';
-import { createMonth } from '../CalendarView/utils/createMonth';
-import { createYear } from '../CalendarView/utils/createYear';
 
 type State = {
   service: string | null;

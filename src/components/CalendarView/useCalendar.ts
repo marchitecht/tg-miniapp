@@ -84,22 +84,22 @@ export const useCalendar = ({
 
   const onClickArrow = (direction: 'right' | 'left') => {
     if (mode === 'years' && direction === 'left') {
-      return setSelectedYearsInterval(getYearsInterval(selectedYearsInterval[0] - 10));
+      return setSelectedYearInterval(getYearsInterval(selectedYearInterval[0] - 10));
     }
 
     if (mode === 'years' && direction === 'right') {
-      return setSelectedYearsInterval(getYearsInterval(selectedYearsInterval[0] + 10));
+      return setSelectedYearInterval(getYearsInterval(selectedYearInterval[0] + 10));
     }
 
-    if (mode === 'monthes' && direction === 'left') {
+    if (mode === 'months' && direction === 'left') {
       const year = selectedYear - 1;
-      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+      if (!selectedYearInterval.includes(year)) setSelectedYearInterval(getYearsInterval(year));
       return setSelectedYear(selectedYear - 1);
     }
 
-    if (mode === 'monthes' && direction === 'right') {
+    if (mode === 'months' && direction === 'right') {
       const year = selectedYear + 1;
-      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+      if (!selectedYearInterval.includes(year)) setSelectedYearInterval(getYearsInterval(year));
       return setSelectedYear(selectedYear + 1);
     }
 
@@ -109,14 +109,14 @@ export const useCalendar = ({
       if (monthIndex === -1) {
         const year = selectedYear - 1;
         setSelectedYear(year);
-        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        if (!selectedYearInterval.includes(year)) setSelectedYearInterval(getYearsInterval(year));
         return setSelectedMonth(createMonth({ date: new Date(selectedYear - 1, 11), locale }));
       }
 
       if (monthIndex === 12) {
         const year = selectedYear + 1;
         setSelectedYear(year);
-        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        if (!selectedYearInterval.includes(year)) setSelectedYearInterval(getYearsInterval(year));
         return setSelectedMonth(createMonth({ date: new Date(year, 0), locale }));
       }
 
