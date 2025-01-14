@@ -1,7 +1,10 @@
-import { useReducer, useState } from "react";
-import { CalendarView } from "../CarouselView/CalendarView";
-import { ServicesView } from "../ServicesView/ServicesView";
-import { SpecialistView } from "../SpecialistsView/SpecialistsView";
+import { useReducer, useState } from 'react';
+import { CalendarView } from '../CarouselView/CalendarView';
+import { ServicesView } from '../ServicesView/ServicesView';
+import { SpecialistView } from '../SpecialistsView/SpecialistsView';
+import { createDate } from '../CalendarView/utils/createDate';
+import { createMonth } from '../CalendarView/utils/createMonth';
+import { createYear } from '../CalendarView/utils/createYear';
 
 type State = {
   service: string | null;
@@ -10,22 +13,22 @@ type State = {
 };
 
 type Action =
-  | { type: "SELECT_SERVICE"; payload: string }
-  | { type: "SELECT_SPECIALIST"; payload: string }
-  | { type: "SELECT_DATE_TIME"; payload: string };
+  | { type: 'SELECT_SERVICE'; payload: string }
+  | { type: 'SELECT_SPECIALIST'; payload: string }
+  | { type: 'SELECT_DATE_TIME'; payload: string };
 
 const initialState: State = {
   service: null,
   specialist: null,
-  dateTime: null,
+  dateTime: null
 };
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "SELECT_SERVICE":
+    case 'SELECT_SERVICE':
       return { ...state, service: action.payload };
-    case "SELECT_SPECIALIST":
+    case 'SELECT_SPECIALIST':
       return { ...state, specialist: action.payload };
-    case "SELECT_DATE_TIME":
+    case 'SELECT_DATE_TIME':
       return { ...state, dateTime: action.payload };
     default:
       return state;
@@ -33,80 +36,78 @@ const reducer = (state: State, action: Action): State => {
 };
 export const Stepper = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state, "state");
+  // console.log(createYear().createYearMonths(), "createMonth");
 
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const handleSelectService = (service: string) => {
-    dispatch({ type: "SELECT_SERVICE", payload: service });
+    dispatch({ type: 'SELECT_SERVICE', payload: service });
     setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
   };
 
   const handleSelectSpecialist = (specialist: string) => {
-    dispatch({ type: "SELECT_SPECIALIST", payload: specialist });
+    dispatch({ type: 'SELECT_SPECIALIST', payload: specialist });
     setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
   };
 
   const handleSelectDateTime = (dateTime: string) => {
-    dispatch({ type: "SELECT_DATE_TIME", payload: dateTime });
+    dispatch({ type: 'SELECT_DATE_TIME', payload: dateTime });
     setCurrentViewIndex((prevIndex) => (prevIndex + 1) % views.length);
   };
 
   const views = [
     {
-      name: "Services",
+      name: 'Services',
       component: () => <ServicesView onSelectService={handleSelectService} />,
-      label: "Услуга",
+      label: 'Услуга'
     },
     {
-      name: "Specialists",
+      name: 'Specialists',
 
-      component: () => (
-        <SpecialistView onSelectSpecialist={handleSelectSpecialist} />
-      ),
-      label: "Специалист",
+      component: () => <SpecialistView onSelectSpecialist={handleSelectSpecialist} />,
+      label: 'Специалист'
     },
     {
-      name: "Calendar",
+      name: 'Calendar',
       component: () => <CalendarView onSelectDateTime={handleSelectDateTime} />,
-      label: "Дата и время",
+      label: 'Дата и время'
     },
     {
-      name: "Success",
+      name: 'Success',
       component: () => <SuccessView state={state} />,
-      label: "Подтверждение заказа",
-    },
+      label: 'Подтверждение заказа'
+    }
   ];
   return (
     <>
-      <div style={{ height: "330px" }}>
+      <div style={{ height: '330px' }}>
         <div>{views[currentViewIndex].component()}</div>
       </div>
       <span>Выберите:</span>
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "20px",
-        }}>
+          display: 'flex',
+          justifyContent: 'space-around',
+          marginTop: '20px'
+        }}
+      >
         {views.map((view, index) => (
           <div
             key={index}
             onClick={() => setCurrentViewIndex(index)}
             style={{
-              padding: "8px",
-              cursor: "pointer",
+              padding: '8px',
+              cursor: 'pointer',
               backgroundColor:
                 currentViewIndex > index
-                  ? "green"
+                  ? 'green'
                   : currentViewIndex === index
-                  ? "lightgray"
-                  : "white",
-              border: "1px solid black",
-              color: "black",
-            }}>
-            {currentViewIndex === 3 && index === 3
-              ? "Подтверждаю!"
-              : view.label}
+                  ? 'lightgray'
+                  : 'white',
+              border: '1px solid black',
+              color: 'black'
+            }}
+          >
+            {currentViewIndex === 3 && index === 3 ? 'Подтверждаю!' : view.label}
           </div>
         ))}
       </div>

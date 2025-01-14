@@ -1,0 +1,87 @@
+.dateContainer {
+  background-color: #ededed;
+  font-size: 15px;
+  color: black;
+  border-radius: 18px;
+  padding: 5px 25px;
+  margin-bottom: 15px;
+}
+
+.calendar {
+  width: 200px;
+  border-radius: 18px;
+  text-transform: capitalize;
+  background-color: #3a3e42;
+}
+
+.calendarHeader {
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  background-color: #575c63;
+  color: var(--color-text);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.2);
+}
+
+.calendarHeaderArrowLeft {
+  width: 5px;
+  height: 10px;
+  cursor: pointer;
+  // background-image: ;
+}
+
+.calendarBody {
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.calendarWeekNames {
+  height: 20px;
+  font-weight: 600;
+  font-size: 8px;
+  color: rgb(112, 112, 215);
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px 1px;
+}
+.calendarDays {
+  font-size: 10px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+}
+.calendarDay {
+  padding: 5.5px 0px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.calendarDay:hover {
+  background-color: #939aa3;
+}
+
+.calendarAdditionalDay {
+  padding: 5.5px;
+  font-weight: 300;
+  cursor: pointer;
+  color: rgb(94, 104, 104);
+}
+.calendarSelectedItem {
+  color: rgb(237, 237, 237);
+  background-color: lightblue;
+}
+.calendarSelectedItem:hover {
+  background-color: lightblue;
+}
+.calendarTodayItem {
+  background-color: rgb(183, 127, 220);
+}
