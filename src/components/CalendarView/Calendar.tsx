@@ -12,12 +12,7 @@ interface CalendarProps {
 }
 // console.log(getMonthNames(), 'getMonthNames');
 
-export const Calendar: React.FC<CalendarProps> = ({
-  selectedDate,
-  selectDate,
-  locale = 'default',
-  firstWeekDay = 2
-}) => {
+export const Calendar: React.FC<CalendarProps> = ({ selectedDate, selectDate }) => {
   const { state, functions } = useCalendar({ selectedDate });
   //   console.log(state, 'state');
 
@@ -46,7 +41,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         {state.mode === 'days' && (
           <>
             <div className={styles.calendarWeekNames}>
-              {state.weekDaysNames.map((weekDaysName, index) => (
+              {state.weekDaysNames.map((weekDaysName) => (
                 <div key={weekDaysName.dayShort}>{weekDaysName.dayShort}</div>
               ))}
             </div>
